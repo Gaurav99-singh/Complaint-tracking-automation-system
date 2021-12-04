@@ -13,6 +13,19 @@ public class SeeComplaintsBean
 		this.assignstatus = assignstatus;
 	}
 
+	public SeeComplaintsBean(String cmpid, String cusid,String product, String cmptxt,String assignstatus, String resolvestatus
+			, String feedback ) {
+		super();
+		this.product = product;
+		this.cmptxt = cmptxt;
+		this.cmpid = cmpid;
+		this.cusid = cusid;
+		this.resolvestatus = resolvestatus;
+		//this.cmpDate = cmpDate;
+		this.feedback = feedback;
+		this.assignstatus = assignstatus;
+	}
+	
 	public SeeComplaintsBean(String cmpid, String cusid,String product, String cmptxt,String cmpDate,String assignstatus, String resolvestatus
 			, String feedback ) {
 		super();

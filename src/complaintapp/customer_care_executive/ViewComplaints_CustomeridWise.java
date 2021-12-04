@@ -32,6 +32,9 @@ import javax.swing.table.JTableHeader;
 
 import complaintapp.beans.SeeComplaintsBean;
 import complaintapp.database.DbConnection1;
+import java.awt.Toolkit;
+import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
 
 public class ViewComplaints_CustomeridWise extends JFrame implements ActionListener,WindowListener,KeyListener{
 
@@ -70,6 +73,7 @@ public class ViewComplaints_CustomeridWise extends JFrame implements ActionListe
 	 */
 	public ViewComplaints_CustomeridWise()
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ViewComplaints_CustomeridWise.class.getResource("/complaintapp/images/icons8-view-64.png")));
 		setTitle("VIEW COMPLAINTS CUSTOMER-ID WISE");
 		con=DbConnection1.createConnection();
 		model=new DefaultTableModel();
@@ -81,7 +85,7 @@ public class ViewComplaints_CustomeridWise extends JFrame implements ActionListe
 	public void createComponents()
 	{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 936, 692);
+		setBounds(100, 100, 1051, 612);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -89,23 +93,31 @@ public class ViewComplaints_CustomeridWise extends JFrame implements ActionListe
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("VIEW COMPLAINTS CUSTOMER-ID WISE PAGE");
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setForeground(new Color(0, 0, 205));
+		lblNewLabel.setBorder(new LineBorder(new Color(255, 127, 80), 5));
+		lblNewLabel.setBackground(new Color(102, 205, 170));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
-		lblNewLabel.setBounds(87, 51, 789, 62);
+		lblNewLabel.setBounds(86, 11, 789, 62);
 		contentPane.add(lblNewLabel);
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(23, 211, 889, 391);
+		scrollPane.setBounds(23, 211, 965, 320);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setBackground(new Color(255, 228, 181));
+		table.setBorder(new LineBorder(new Color(47, 79, 79)));
+		table.setForeground(new Color(250, 128, 114));
+		table.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 15));
 		scrollPane.setViewportView(table);
 		JTableHeader header=table.getTableHeader();//returns reference of header
-		header.setBackground(Color.CYAN);
-		header.setForeground(Color.RED);
+		header.setBackground(Color.GRAY);
+		header.setForeground(Color.PINK);
 		header.setFont(new Font("Comic Sans Ms",Font.BOLD,20));
 		
 		String[]colnames= {"Complaintid","Customerid","ProductName","Complaint_text","Complaint_Date","Assign_Status","Resolve_Status","Feedback_Status"};
@@ -114,21 +126,37 @@ public class ViewComplaints_CustomeridWise extends JFrame implements ActionListe
 		table.setModel(model);
 		
 		JButton btnview = new JButton("VIEW");
+		btnview.setForeground(new Color(255, 140, 0));
+		btnview.setBorder(new LineBorder(new Color(0, 0, 128), 3));
+		btnview.setBackground(new Color(189, 183, 107));
 		btnview.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
-		btnview.setBounds(725, 124, 171, 62);
+		btnview.setBounds(772, 109, 197, 47);
         btnview.addActionListener(this);
 		contentPane.add(btnview);
 		
 		JLabel lblcomplaintid = new JLabel("ENTER CUSTOMER ID:");
+		lblcomplaintid.setOpaque(true);
+		lblcomplaintid.setForeground(new Color(47, 79, 79));
+		lblcomplaintid.setBorder(new LineBorder(new Color(72, 61, 139), 3));
+		lblcomplaintid.setBackground(new Color(222, 184, 135));
 		lblcomplaintid.setHorizontalAlignment(SwingConstants.CENTER);
 		lblcomplaintid.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
-		lblcomplaintid.setBounds(24, 136, 297, 47);
+		lblcomplaintid.setBounds(23, 109, 329, 47);
 		contentPane.add(lblcomplaintid);
 		
 		txtcusid = new JTextField();
-		txtcusid.setBounds(368, 138, 261, 47);
+		txtcusid.setForeground(new Color(255, 99, 71));
+		txtcusid.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		txtcusid.setBorder(new LineBorder(new Color(25, 25, 112), 3));
+		txtcusid.setBackground(new Color(222, 184, 135));
+		txtcusid.setBounds(391, 109, 297, 47);
 		contentPane.add(txtcusid);
 		txtcusid.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(ViewComplaints_CustomeridWise.class.getResource("/complaintapp/images/conceptual-display-customer-complaints-business-concept-expression-dissatisfaction-consumer-s-behalf-hands-pointing-226561628.jpg")));
+		lblNewLabel_1.setBounds(0, 0, 1037, 575);
+		contentPane.add(lblNewLabel_1);
 	}
 
 	String cusid;
@@ -244,7 +272,7 @@ public class ViewComplaints_CustomeridWise extends JFrame implements ActionListe
 	public void windowClosing(WindowEvent e)
 	{
 		DbConnection1.closeConnection();
-		JOptionPane.showMessageDialog(this,"THANK YOU");
+		JOptionPane.showMessageDialog(this,"THANK YOU","EXIT",JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override

@@ -17,8 +17,13 @@ import javax.swing.JButton;
 import java.awt.Color;
 
 import complaintapp.database.DbConnection1;
+import complaintapp.entry.CompanyManagerAdmin;
+
 import java.sql.*;
 import java.awt.event.*;
+import java.awt.Toolkit;
+import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
 
 public class DeleteEmployeeDetails extends JFrame implements ActionListener,WindowListener{
 
@@ -52,6 +57,7 @@ public class DeleteEmployeeDetails extends JFrame implements ActionListener,Wind
 	
 	public DeleteEmployeeDetails() 
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DeleteEmployeeDetails.class.getResource("/complaintapp/images/contactdelete.png")));
 		setResizable(false);
 		con=DbConnection1.createConnection();
 		setTitle("DELETE EMPLOYEE DETAILS");
@@ -62,38 +68,57 @@ public class DeleteEmployeeDetails extends JFrame implements ActionListener,Wind
 	public void createComponents()
 	{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 971, 634);
+		setBounds(100, 100, 926, 553);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(85, 107, 47), 10));
 		setContentPane(contentPane);
 		setLocationRelativeTo(null);
 		contentPane.setLayout(null);
 		
 		JLabel lblid = new JLabel("ENTER ID:");
+		lblid.setOpaque(true);
+		lblid.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		lblid.setBackground(new Color(189, 183, 107));
+		lblid.setForeground(new Color(255, 99, 71));
 		lblid.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
 		lblid.setHorizontalAlignment(SwingConstants.CENTER);
-		lblid.setBounds(127, 288, 206, 52);
+		lblid.setBounds(354, 185, 206, 52);
 		contentPane.add(lblid);
 		
 		txtid = new JTextField();
+		txtid.setHorizontalAlignment(SwingConstants.CENTER);
+		txtid.setForeground(new Color(60, 179, 113));
+		txtid.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		txtid.setBorder(new LineBorder(new Color(119, 136, 153), 3));
+		txtid.setBackground(new Color(211, 211, 211));
 		txtid.setToolTipText("Id format \r\nCustomer Care Executive-->CCE01,CCE02....  \r\nService Engineer-->SE01,SE01......");
-		txtid.setBounds(479, 288, 221, 52);
+		txtid.setBounds(269, 296, 397, 52);
 		contentPane.add(txtid);
 		txtid.setColumns(10);
 		
 		JButton btndelete = new JButton("DELETE");
+		btndelete.setBorder(new LineBorder(new Color(47, 79, 79), 5));
+		btndelete.setBackground(new Color(0, 128, 128));
 		btndelete.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
-		btndelete.setForeground(new Color(0, 0, 0));
-		btndelete.setBounds(324, 470, 190, 46);
+		btndelete.setForeground(new Color(255, 69, 0));
+		btndelete.setBounds(354, 435, 206, 46);
 		btndelete.addActionListener(this);
 		contentPane.add(btndelete);
 		
-		JLabel lblNewLabel = new JLabel("DELETE CONTACT PAGE");
+		JLabel lblNewLabel = new JLabel("DELETE EMPLOYEE DETAILS PAGE");
+		lblNewLabel.setBorder(new LineBorder(new Color(47, 79, 79), 5));
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setBackground(new Color(189, 183, 107));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
-		lblNewLabel.setForeground(new Color(0, 0, 0));
-		lblNewLabel.setBounds(168, 80, 508, 64);
+		lblNewLabel.setForeground(new Color(255, 69, 0));
+		lblNewLabel.setBounds(169, 37, 623, 84);
 		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(DeleteEmployeeDetails.class.getResource("/complaintapp/images/companymanageradminpic.jpg")));
+		lblNewLabel_1.setBounds(0, 0, 922, 526);
+		contentPane.add(lblNewLabel_1);
 	}
 
 	String id;
@@ -202,7 +227,8 @@ public class DeleteEmployeeDetails extends JFrame implements ActionListener,Wind
 	public void windowClosing(WindowEvent e) 
 	{
 		DbConnection1.closeConnection();
-		JOptionPane.showMessageDialog(this,"THANK YOU FOR USING THIS PAGE","EXIT",JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(this,"THANK YOU","EXIT",JOptionPane.INFORMATION_MESSAGE);
+		
 	}
 
 	@Override

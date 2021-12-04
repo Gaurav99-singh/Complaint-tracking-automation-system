@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -58,7 +59,7 @@ public class CompanyManagerAdmin extends JFrame implements ActionListener,Window
 	 */
 	public CompanyManagerAdmin() 
 	{
-		//setIconImage(Toolkit.getDefaultToolkit().getImage(CompanyManagerAdmin.class.getResource("/contactapp/images/admin.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CompanyManagerAdmin.class.getResource("/complaintapp/images/admin.jpg")));
 		setResizable(false);
 		setExtendedState(Frame.MAXIMIZED_BOTH);
 		setTitle("COMPANY MANAGER ADMIN");
@@ -72,16 +73,16 @@ public class CompanyManagerAdmin extends JFrame implements ActionListener,Window
 	public void createComponents()
 	{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//dispose in place of exit so that child frame closes and parent window remains open
-		setBounds(100, 100, 920, 739);
+		setBounds(100, 100, 1295, 679);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBorder(new LineBorder(new Color(70, 130, 180), 4));
-		menuBar.setBackground(new Color(211, 211, 211));
+		menuBar.setBorder(new LineBorder(Color.DARK_GRAY, 4));
+		menuBar.setBackground(new Color(119, 136, 153));
 		menuBar.setForeground(new Color(128, 0, 0));
 		setJMenuBar(menuBar);
 		
-		JMenu contactmenu = new JMenu("Manage Employee");
-		contactmenu.setBorder(new LineBorder(Color.BLACK, 5));
+		JMenu contactmenu = new JMenu("MANAGE EMPLOYEE");
+		contactmenu.setBorder(new LineBorder(new Color(0, 139, 139), 3));
 		contactmenu.setHorizontalAlignment(SwingConstants.CENTER);
 		contactmenu.setOpaque(true);
 		contactmenu.setBackground(new Color(211, 211, 211));
@@ -90,114 +91,170 @@ public class CompanyManagerAdmin extends JFrame implements ActionListener,Window
 		menuBar.add(contactmenu);
 		
 		miaddcontact = new JMenuItem("ADD DETAILS");
-		miaddcontact.setBorder(new LineBorder(new Color(128, 0, 0), 4));
+		miaddcontact.setIcon(new ImageIcon(CompanyManagerAdmin.class.getResource("/complaintapp/images/contactcreate.png")));
+		miaddcontact.setBorder(new LineBorder(new Color(220, 20, 60), 3));
 		miaddcontact.setOpaque(true);
 		miaddcontact.setBackground(new Color(169, 169, 169));
-		//miaddcontact.setIcon(new ImageIcon(CompanyManagerAdmin.class.getResource("/contactapp/images/contactcreate.png")));
 		miaddcontact.setFont(new Font("Snap ITC", Font.ITALIC, 20));
 		contactmenu.add(miaddcontact);
 		miaddcontact.addActionListener(this);
 	    
 	    miupdatecontact = new JMenuItem("UPDATE DETAILS");
-	    //miupdatecontact.setIcon(new ImageIcon(CompanyManagerAdmin.class.getResource("/contactapp/images/contactupdate.png")));
+	    miupdatecontact.setOpaque(true);
+	    miupdatecontact.setIcon(new ImageIcon(CompanyManagerAdmin.class.getResource("/complaintapp/images/contactupdate.png")));
 	    miupdatecontact.setFont(new Font("Snap ITC", Font.ITALIC, 20));
-	    miupdatecontact.setBorder(new LineBorder(new Color(128, 0, 0), 4));
+	    miupdatecontact.setBorder(new LineBorder(new Color(220, 20, 60), 3));
 	    miupdatecontact.setBackground(new Color(169, 169, 169));
-	    miupdatecontact.addActionListener(this);
 	    contactmenu.add(miupdatecontact);
+	    miupdatecontact.addActionListener(this);
 		
 	    mideletecontact = new JMenuItem("DELETE DETAILS");
-	    mideletecontact.setBorder(new LineBorder(new Color(128, 0, 0), 4));
+	    mideletecontact.setOpaque(true);
+	    mideletecontact.setIcon(new ImageIcon(CompanyManagerAdmin.class.getResource("/complaintapp/images/contactdelete.png")));
+	    mideletecontact.setBorder(new LineBorder(new Color(220, 20, 60), 3));
 	    mideletecontact.setBackground(new Color(169, 169, 169));
 	    mideletecontact.setForeground(new Color(0, 0, 0));
-	    //mideletecontact.setIcon(new ImageIcon(CompanyManagerAdmin.class.getResource("/contactapp/images/contactdelete.png")));
 		mideletecontact.setFont(new Font("Snap ITC", Font.ITALIC, 20));
 		contactmenu.add(mideletecontact);
 		mideletecontact.addActionListener(this);
 		
 		JMenu searchmenu = new JMenu("VIEW EMPLOYEE");
+		searchmenu.setBorder(new LineBorder(new Color(0, 139, 139), 3));
+		searchmenu.setOpaque(true);
+		searchmenu.setBackground(new Color(211, 211, 211));
+		searchmenu.setHorizontalAlignment(SwingConstants.CENTER);
 		searchmenu.setForeground(new Color(128, 0, 0));
-		searchmenu.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 20));
+		searchmenu.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
 		menuBar.add(searchmenu);
 		
 		
 		JMenuItem miseecce = new JMenuItem("VIEW ALL CUSTOMER CARE EXECUTIVES");
-		miseecce.setForeground(new Color(255, 0, 0));
-		miseecce.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 20));
+		miseecce.setIcon(new ImageIcon(CompanyManagerAdmin.class.getResource("/complaintapp/images/icons8-view-64.png")));
+		miseecce.setBorder(new LineBorder(new Color(220, 20, 60), 3));
+		miseecce.setOpaque(true);
+		miseecce.setBackground(new Color(169, 169, 169));
+		miseecce.setForeground(Color.BLACK);
+		miseecce.setFont(new Font("Snap ITC", Font.ITALIC, 20));
 		miseecce.addActionListener(this);
 		searchmenu.add(miseecce);
 		
 		
 		JMenuItem miseese = new JMenuItem("VIEW ALL SERVICE ENGINEERS");
-		miseese.setForeground(new Color(255, 0, 0));
-		miseese.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 20));
+		miseese.setIcon(new ImageIcon(CompanyManagerAdmin.class.getResource("/complaintapp/images/icons8-view-64.png")));
+		miseese.setBorder(new LineBorder(new Color(220, 20, 60), 3));
+		miseese.setBackground(new Color(169, 169, 169));
+		miseese.setOpaque(true);
+		miseese.setForeground(new Color(0, 0, 0));
+		miseese.setFont(new Font("Snap ITC", Font.ITALIC, 20));
 		searchmenu.add(miseese);
 		
 		JMenu mnviewcomp = new JMenu("VIEW COMPLAINTS");
+		mnviewcomp.setOpaque(true);
+		mnviewcomp.setBorder(new LineBorder(new Color(0, 139, 139), 3));
+		mnviewcomp.setBackground(new Color(211, 211, 211));
 		mnviewcomp.setHorizontalAlignment(SwingConstants.CENTER);
 		mnviewcomp.setForeground(new Color(128, 0, 0));
-		mnviewcomp.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 20));
+		mnviewcomp.setFont(new Font("Segoe UI", Font.BOLD | Font.ITALIC, 18));
 		menuBar.add(mnviewcomp);
 		
 		mibydate = new JMenuItem("DATE WISE");
+		mibydate.setIcon(new ImageIcon(CompanyManagerAdmin.class.getResource("/complaintapp/images/icons8-search-64.png")));
+		mibydate.setFont(new Font("Snap ITC", Font.ITALIC, 20));
+		mibydate.setBorder(new LineBorder(new Color(220, 20, 60), 3));
+		mibydate.setBackground(new Color(169, 169, 169));
 		mibydate.addActionListener(this);
 		mnviewcomp.add(mibydate);
 		
 		mibycompid = new JMenuItem("COMPLAINT ID WISE");
+		mibycompid.setIcon(new ImageIcon(CompanyManagerAdmin.class.getResource("/complaintapp/images/icons8-search-64.png")));
+		mibycompid.setBackground(new Color(169, 169, 169));
+		mibycompid.setBorder(new LineBorder(new Color(220, 20, 60), 3));
+		mibycompid.setFont(new Font("Snap ITC", Font.ITALIC, 20));
 		mibycompid.addActionListener(this);
 		mnviewcomp.add(mibycompid);
 		
 	    mibycusid = new JMenuItem("CUSTOMER ID WISE");
+	    mibycusid.setIcon(new ImageIcon(CompanyManagerAdmin.class.getResource("/complaintapp/images/icons8-search-64.png")));
+	    mibycusid.setBorder(new LineBorder(new Color(220, 20, 60), 3));
+	    mibycusid.setBackground(new Color(169, 169, 169));
+	    mibycusid.setFont(new Font("Snap ITC", Font.ITALIC, 20));
 	    mibycusid.addActionListener(this);
 		mnviewcomp.add(mibycusid);
 		
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(Color.DARK_GRAY, 10));
 		miseese.addActionListener(this);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("1- CM will create the account of CCE and SE.\r\n");
+		lblNewLabel.setBorder(new LineBorder(new Color(0, 139, 139), 3));
+		lblNewLabel.setBackground(new Color(169, 169, 169));
+		lblNewLabel.setOpaque(true);
 		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(113, 81, 793, 107);
+		lblNewLabel.setBounds(86, 135, 1104, 62);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("2- CM will be able to add, update, and delete account of both members.");
+		lblNewLabel_1.setBorder(new LineBorder(new Color(0, 139, 139), 3));
+		lblNewLabel_1.setBackground(new Color(169, 169, 169));
+		lblNewLabel_1.setOpaque(true);
 		lblNewLabel_1.setForeground(Color.RED);
 		lblNewLabel_1.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(32, 168, 884, 119);
+		lblNewLabel_1.setBounds(86, 218, 1104, 69);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("3- CM will be able to see all complaints date wise.");
+		lblNewLabel_2.setBorder(new LineBorder(new Color(0, 139, 139), 3));
+		lblNewLabel_2.setBackground(new Color(169, 169, 169));
+		lblNewLabel_2.setOpaque(true);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setForeground(Color.RED);
 		lblNewLabel_2.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
-		lblNewLabel_2.setBounds(42, 298, 863, 89);
+		lblNewLabel_2.setBounds(86, 311, 1104, 69);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("4- CM will be able to see all complaints compalint-id wise.");
+		lblNewLabel_3.setBorder(new LineBorder(new Color(0, 139, 139), 3));
+		lblNewLabel_3.setBackground(new Color(169, 169, 169));
+		lblNewLabel_3.setOpaque(true);
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setForeground(Color.RED);
 		lblNewLabel_3.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
-		lblNewLabel_3.setBounds(53, 407, 863, 89);
+		lblNewLabel_3.setBounds(86, 406, 1101, 69);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("5- CM will be able to see all complaints customer-id wise.");
+		lblNewLabel_4.setBorder(new LineBorder(new Color(0, 139, 139), 3));
+		lblNewLabel_4.setBackground(new Color(169, 169, 169));
+		lblNewLabel_4.setOpaque(true);
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setForeground(Color.RED);
 		lblNewLabel_4.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
-		lblNewLabel_4.setBounds(43, 507, 863, 89);
+		lblNewLabel_4.setBounds(86, 507, 1104, 69);
 		contentPane.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("                             COMPANY MANAGER");
+		JLabel lblNewLabel_5 = new JLabel("COMPANY MANAGER");
+		lblNewLabel_5.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		lblNewLabel_5.setOpaque(true);
+		lblNewLabel_5.setBackground(new Color(211, 211, 211));
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5.setForeground(new Color(0, 0, 139));
 		lblNewLabel_5.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
-		lblNewLabel_5.setBounds(196, 27, 710, 68);
+		lblNewLabel_5.setBounds(86, 26, 1099, 91);
 		contentPane.add(lblNewLabel_5);
+		
+		JLabel label = new JLabel("New label");
+		label.setBounds(0, 562, 1278, -559);
+		contentPane.add(label);
+		
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setIcon(new ImageIcon(CompanyManagerAdmin.class.getResource("/complaintapp/images/loginbackground.jpg")));
+		lblNewLabel_6.setBounds(10, 11, 1259, 587);
+		contentPane.add(lblNewLabel_6);
 	}
 
 	@Override
@@ -238,6 +295,7 @@ public class CompanyManagerAdmin extends JFrame implements ActionListener,Window
 		}
 		if(caption.equalsIgnoreCase("COMPLAINT ID WISE"))
 		{
+			
 			ViewComplaints_ComplaintidWise vcw=new ViewComplaints_ComplaintidWise();
 			vcw.setVisible(true);
 		}
@@ -259,9 +317,8 @@ public class CompanyManagerAdmin extends JFrame implements ActionListener,Window
 	public void windowClosing(WindowEvent e) 
 	{
 		
-		//this.dispose();
-		//new EmployeeLogin().setVisible(true);      //to open login frame when we close admin frame
-		
+		JOptionPane.showMessageDialog(this,"THANK YOU");
+		new EmployeeLogin().setVisible(true);
 	}
 
 	@Override

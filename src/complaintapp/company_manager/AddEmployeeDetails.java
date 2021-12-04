@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import complaintapp.checkvalidationcode.*;
 import complaintapp.database.DbConnection1;
+import complaintapp.entry.CompanyManagerAdmin;
 
 import java.awt.Toolkit;
 
@@ -30,6 +31,8 @@ import javax.swing.JPasswordField;
 import java.sql.*;
 import java.awt.event.*;
 import java.awt.Color;
+import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
 
 public class AddEmployeeDetails extends JFrame implements ActionListener,KeyListener,WindowListener
 {
@@ -123,118 +126,207 @@ public class AddEmployeeDetails extends JFrame implements ActionListener,KeyList
 	public void createComponents()
 	{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 988, 589);
+		setBounds(100, 100, 1063, 668);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(128, 0, 0), 10));
 		setContentPane(contentPane);
 		setLocationRelativeTo(null);
 		contentPane.setLayout(null);
 		
 		JLabel lblname = new JLabel("name:");
-		lblname.setBounds(147, 196, 120, 23);
+		lblname.setBorder(new LineBorder(new Color(119, 136, 153), 3, true));
+		lblname.setOpaque(true);
+		lblname.setForeground(new Color(165, 42, 42));
+		lblname.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		lblname.setBackground(new Color(245, 222, 179));
+		lblname.setHorizontalAlignment(SwingConstants.CENTER);
+		lblname.setBounds(113, 230, 203, 41);
 		contentPane.add(lblname);
 		
 		txtname = new JTextField();
+		txtname.setHorizontalAlignment(SwingConstants.CENTER);
+		txtname.setForeground(new Color(0, 100, 0));
+		txtname.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		txtname.setBorder(new LineBorder(new Color(119, 136, 153), 3, true));
+		txtname.setBackground(new Color(245, 222, 179));
 		txtname.setToolTipText("Name must contain only alphabets.\r\nEx->JOHN");
-		txtname.setBounds(351, 197, 96, 20);
+		txtname.setBounds(392, 231, 279, 44);
 		contentPane.add(txtname);
 		txtname.addKeyListener(this);
 		txtname.setColumns(10);
 		
 		JLabel lbladdress = new JLabel("address:");
-		lbladdress.setBounds(147, 270, 76, 14);
+		lbladdress.setBorder(new LineBorder(new Color(119, 136, 153), 3, true));
+		lbladdress.setOpaque(true);
+		lbladdress.setForeground(new Color(165, 42, 42));
+		lbladdress.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		lbladdress.setBackground(new Color(245, 222, 179));
+		lbladdress.setHorizontalAlignment(SwingConstants.CENTER);
+		lbladdress.setBounds(113, 299, 203, 41);
 		contentPane.add(lbladdress);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(309, 242, 279, 77);
+		scrollPane.setBounds(392, 288, 423, 77);
 		contentPane.add(scrollPane);
 		
 		txtaddress = new JTextArea();
+		txtaddress.setForeground(new Color(0, 100, 0));
+		txtaddress.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		txtaddress.setBorder(new LineBorder(new Color(119, 136, 153), 3, true));
+		txtaddress.setBackground(new Color(245, 222, 179));
 		scrollPane.setViewportView(txtaddress);
 		
 		JLabel lblphone = new JLabel("phone no:");
-		lblphone.setBounds(147, 350, 49, 14);
+		lblphone.setBorder(new LineBorder(new Color(119, 136, 153), 3, true));
+		lblphone.setOpaque(true);
+		lblphone.setForeground(new Color(165, 42, 42));
+		lblphone.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		lblphone.setBackground(new Color(245, 222, 179));
+		lblphone.setHorizontalAlignment(SwingConstants.CENTER);
+		lblphone.setBounds(113, 379, 203, 41);
 		contentPane.add(lblphone);
 		
 		txtphone = new JTextField();
+		txtphone.setHorizontalAlignment(SwingConstants.CENTER);
+		txtphone.setForeground(new Color(0, 100, 0));
+		txtphone.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		txtphone.setBorder(new LineBorder(new Color(119, 136, 153), 3, true));
+		txtphone.setBackground(new Color(245, 222, 179));
 		txtphone.setToolTipText("Phone number must contain only 10 digits.");
-		txtphone.setBounds(304, 347, 96, 20);
+		txtphone.setBounds(392, 376, 279, 44);
 		contentPane.add(txtphone);
 		txtphone.addKeyListener(this);
 		txtphone.setColumns(10);
 		
 		JLabel lblemail = new JLabel("email:");
-		lblemail.setBounds(147, 399, 76, 14);
+		lblemail.setBorder(new LineBorder(new Color(119, 136, 153), 3, true));
+		lblemail.setOpaque(true);
+		lblemail.setForeground(new Color(165, 42, 42));
+		lblemail.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		lblemail.setBackground(new Color(245, 222, 179));
+		lblemail.setHorizontalAlignment(SwingConstants.CENTER);
+		lblemail.setBounds(113, 443, 203, 44);
 		contentPane.add(lblemail);
 		
 		txtemail = new JTextField();
+		txtemail.setHorizontalAlignment(SwingConstants.CENTER);
+		txtemail.setForeground(new Color(0, 100, 0));
+		txtemail.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		txtemail.setBorder(new LineBorder(new Color(119, 136, 153), 3, true));
+		txtemail.setBackground(new Color(245, 222, 179));
 		txtemail.setToolTipText("Email Id format->xyz@gmail.com");
-		txtemail.setBounds(383, 397, 121, 17);
+		txtemail.setBounds(392, 443, 279, 44);
 		contentPane.add(txtemail);
 		txtemail.setColumns(10);
 		
 		JLabel lblexperience = new JLabel("Experience:");
+		lblexperience.setBorder(new LineBorder(new Color(119, 136, 153), 3, true));
+		lblexperience.setOpaque(true);
+		lblexperience.setForeground(new Color(165, 42, 42));
+		lblexperience.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		lblexperience.setBackground(new Color(245, 222, 179));
 		lblexperience.setHorizontalAlignment(SwingConstants.CENTER);
-		lblexperience.setBounds(107, 431, 136, 14);
+		lblexperience.setBounds(113, 504, 203, 43);
 		contentPane.add(lblexperience);
 		
 		btnmale = new JRadioButton("Male");
+		btnmale.setForeground(new Color(165, 42, 42));
+		btnmale.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		btnmale.setBackground(new Color(233, 150, 122));
 		gender.add(btnmale);
-		btnmale.setBounds(314, 470, 111, 23);
+		btnmale.setBounds(113, 554, 192, 42);
 		contentPane.add(btnmale);
 		
 	    btnfemale = new JRadioButton("Female");
+	    btnfemale.setForeground(new Color(165, 42, 42));
+	    btnfemale.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+	    btnfemale.setBorder(new LineBorder(new Color(95, 158, 160), 4, true));
+	    btnfemale.setBackground(new Color(233, 150, 122));
 		gender.add(btnfemale);
-		btnfemale.setBounds(526, 470, 111, 23);
+		btnfemale.setBounds(393, 555, 192, 41);
 		contentPane.add(btnfemale);
 		
-		btnadd = new JButton("ADD");
-		btnadd.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnadd.setBounds(362, 507, 178, 44);
+		btnadd = new JButton("SUBMIT");
+		btnadd.setBackground(new Color(169, 169, 169));
+		btnadd.setForeground(new Color(178, 34, 34));
+		btnadd.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 25));
+		btnadd.setBounds(733, 551, 237, 44);
 		btnadd.addActionListener(this);
 		contentPane.add(btnadd);
 		
 		cmbcategory = new JComboBox();
+		cmbcategory.setBackground(new Color(72, 209, 204));
+		cmbcategory.setBorder(new LineBorder(new Color(188, 143, 143), 3, true));
 		cmbcategory.setModel(new DefaultComboBoxModel(new String[] {"SELECT CATEGORY", "CUSTOMER CARE EXECUTIVE", "SERVICE ENGINEER"}));
-		cmbcategory.setBounds(560, 103, 243, 22);
+		cmbcategory.setBounds(684, 101, 243, 43);
 		cmbcategory.addActionListener(this);
 		contentPane.add(cmbcategory);
 		
-		JLabel ilbid = new JLabel("ID:");
-		ilbid.setHorizontalAlignment(SwingConstants.CENTER);
-		ilbid.setBounds(84, 103, 96, 14);
-		contentPane.add(ilbid);
+		JLabel lblid = new JLabel("EMPLOYEE ID:");
+		lblid.setBorder(new LineBorder(new Color(119, 136, 153), 3, true));
+		lblid.setOpaque(true);
+		lblid.setForeground(new Color(165, 42, 42));
+		lblid.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		lblid.setBackground(new Color(245, 222, 179));
+		lblid.setHorizontalAlignment(SwingConstants.CENTER);
+		lblid.setBounds(113, 100, 203, 44);
+		contentPane.add(lblid);
 		
 		txtid = new JTextField();
+		txtid.setHorizontalAlignment(SwingConstants.CENTER);
+		txtid.setForeground(new Color(0, 100, 0));
+		txtid.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		txtid.setBorder(new LineBorder(new Color(119, 136, 153), 3, true));
+		txtid.setBackground(new Color(245, 222, 179));
 		txtid.setEnabled(false);
 		txtid.setEditable(false);
 		txtid.setToolTipText("Id format \r\nCustomer Care Executive-->CCE01,CCE02....  \r\nService Engineer-->SE01,SE01......");
-		txtid.setBounds(248, 93, 96, 20);
+		txtid.setBounds(392, 101, 279, 43);
 		contentPane.add(txtid);
 		txtid.setColumns(10);
 		
 		JLabel lblpassword = new JLabel("Password:");
+		lblpassword.setBorder(new LineBorder(new Color(119, 136, 153), 3, true));
+		lblpassword.setOpaque(true);
+		lblpassword.setForeground(new Color(165, 42, 42));
+		lblpassword.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		lblpassword.setBackground(new Color(245, 222, 179));
 		lblpassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblpassword.setBounds(84, 124, 96, 20);
+		lblpassword.setBounds(113, 165, 203, 44);
 		contentPane.add(lblpassword);
 		
 		txtpassword = new JPasswordField();
+		txtpassword.setHorizontalAlignment(SwingConstants.CENTER);
+		txtpassword.setForeground(new Color(0, 100, 0));
+		txtpassword.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		txtpassword.setBorder(new LineBorder(new Color(119, 136, 153), 3, true));
+		txtpassword.setBackground(new Color(245, 222, 179));
 		txtpassword.setToolTipText("PASSWORD must contain atleast 8 digits.");
-		txtpassword.setBounds(248, 124, 120, 20);
+		txtpassword.setBounds(392, 165, 279, 44);
 		contentPane.add(txtpassword);
 		
 		cmbexperience = new JComboBox();
+		cmbexperience.setBackground(new Color(72, 209, 204));
+		cmbexperience.setBorder(new LineBorder(new Color(188, 143, 143), 3, true));
 		cmbexperience.setModel(new DefaultComboBoxModel(new String[] {"SELECT", "0-1  years", "1-2  years", "2-3  years", "3-4 years", ">=5 years"}));
-		cmbexperience.setBounds(362, 427, 214, 22);
+		cmbexperience.setBounds(393, 504, 278, 43);
 		contentPane.add(cmbexperience);
 		
 		JLabel lblNewLabel = new JLabel("ADD EMPLOYEE DETAILS PAGE");
+		lblNewLabel.setBorder(new LineBorder(new Color(0, 128, 128), 4, true));
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setBackground(new Color(189, 183, 107));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(Color.DARK_GRAY);
-		lblNewLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
-		lblNewLabel.setBounds(216, 11, 487, 44);
+		lblNewLabel.setForeground(new Color(128, 0, 0));
+		lblNewLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
+		lblNewLabel.setBounds(112, 29, 844, 61);
 		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(AddEmployeeDetails.class.getResource("/complaintapp/images/writing-note-showing-fill-details-business-photo-showcasing-add-information-empty-space-document-concept-165196319.jpg")));
+		lblNewLabel_1.setBounds(10, 11, 1029, 608);
+		contentPane.add(lblNewLabel_1);
 	}
 	
 	@Override
@@ -419,8 +511,7 @@ public class AddEmployeeDetails extends JFrame implements ActionListener,KeyList
 	public void windowClosing(WindowEvent e) 
 	{
 		DbConnection1.closeConnection();
-		JOptionPane.showMessageDialog(this,"Thank you");
-		
+		JOptionPane.showMessageDialog(this,"THANK YOU","EXIT",JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override

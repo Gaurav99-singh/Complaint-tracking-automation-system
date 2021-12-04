@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import complaintapp.database.DbConnection1;
+import complaintapp.entry.CustomerCareExecutiveAdmin;
 import complaintapp.entry.EmployeeLogin;
 
 import javax.swing.JLabel;
@@ -26,6 +27,9 @@ import java.awt.Color;
 import java.sql.*;
 import java.util.*;
 import java.awt.event.*;
+import java.awt.Toolkit;
+import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
 
 public class FeedbackForm extends JFrame implements ActionListener,KeyListener,WindowListener
 {
@@ -55,6 +59,7 @@ public class FeedbackForm extends JFrame implements ActionListener,KeyListener,W
 	 */
 	public FeedbackForm() 
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FeedbackForm.class.getResource("/complaintapp/images/icons8-feedback-16.png")));
 		con=DbConnection1.createConnection();
 		setTitle("FEEDBACK FORM");
 		this.addWindowListener(this);
@@ -102,7 +107,7 @@ public class FeedbackForm extends JFrame implements ActionListener,KeyListener,W
 	public void createComponents()
 	{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 910, 630);
+		setBounds(100, 100, 971, 630);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -110,21 +115,32 @@ public class FeedbackForm extends JFrame implements ActionListener,KeyListener,W
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("FEEDBACK FORM PAGE");
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setForeground(new Color(47, 79, 79));
+		lblNewLabel.setBorder(new LineBorder(new Color(47, 79, 79), 5));
+		lblNewLabel.setBackground(new Color(222, 184, 135));
 		lblNewLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(214, 37, 482, 60);
+		lblNewLabel.setBounds(182, 25, 482, 60);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblfeedbacktext = new JLabel("FEEDBACK TEXT:");
+		lblfeedbacktext.setBackground(new Color(222, 184, 135));
+		lblfeedbacktext.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		lblfeedbacktext.setOpaque(true);
 		lblfeedbacktext.setHorizontalAlignment(SwingConstants.CENTER);
-		lblfeedbacktext.setForeground(new Color(128, 0, 0));
+		lblfeedbacktext.setForeground(new Color(47, 79, 79));
 		lblfeedbacktext.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
-		lblfeedbacktext.setBounds(10, 268, 384, 52);
+		lblfeedbacktext.setBounds(31, 256, 343, 52);
 		contentPane.add(lblfeedbacktext);
 		
 		cmbcustomerid = new JComboBox<String>();
+		cmbcustomerid.setForeground(new Color(255, 127, 80));
+		cmbcustomerid.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		cmbcustomerid.setBorder(new LineBorder(new Color(178, 34, 34), 5));
+		cmbcustomerid.setBackground(new Color(211, 211, 211));
 		cmbcustomerid.setModel(new DefaultComboBoxModel(new String[] {"SELECT CUSTOMER ID:"}));
-		cmbcustomerid.setBounds(449, 131, 405, 60);
+		cmbcustomerid.setBounds(436, 127, 405, 52);
 		fillCombo();
 		contentPane.add(cmbcustomerid);
 		
@@ -135,21 +151,36 @@ public class FeedbackForm extends JFrame implements ActionListener,KeyListener,W
 		contentPane.add(scrollPane);
 		
 		txtfeedback = new JTextArea();
+		txtfeedback.setForeground(new Color(255, 127, 80));
+		txtfeedback.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 20));
+		txtfeedback.setBorder(new LineBorder(new Color(178, 34, 34), 5));
+		txtfeedback.setBackground(new Color(211, 211, 211));
 		txtfeedback.addKeyListener(this);
 		scrollPane.setViewportView(txtfeedback);
 		
 		JButton btnsubmit = new JButton("SUBMIT");
-		btnsubmit.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 30));
-		btnsubmit.setBounds(260, 483, 374, 60);
+		btnsubmit.setForeground(new Color(178, 34, 34));
+		btnsubmit.setBorder(new LineBorder(new Color(47, 79, 79), 5));
+		btnsubmit.setBackground(new Color(189, 183, 107));
+		btnsubmit.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
+		btnsubmit.setBounds(282, 493, 374, 60);
 		btnsubmit.addActionListener(this);
 		contentPane.add(btnsubmit);
 		
 		JLabel lblcustomerid = new JLabel("SELECT CUSTOMER ID:");
-		lblcustomerid.setForeground(new Color(128, 0, 0));
+		lblcustomerid.setOpaque(true);
+		lblcustomerid.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		lblcustomerid.setBackground(new Color(222, 184, 135));
+		lblcustomerid.setForeground(new Color(47, 79, 79));
 		lblcustomerid.setHorizontalAlignment(SwingConstants.CENTER);
-		lblcustomerid.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
-		lblcustomerid.setBounds(10, 131, 384, 60);
+		lblcustomerid.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
+		lblcustomerid.setBounds(31, 127, 343, 52);
 		contentPane.add(lblcustomerid);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(FeedbackForm.class.getResource("/complaintapp/images/feedback-business-quality-opinion-service-communication-concept-feedback-business-quality-opinion-service-communication-concept-112663339.jpg")));
+		lblNewLabel_1.setBounds(0, 0, 957, 593);
+		contentPane.add(lblNewLabel_1);
 	}
 
 	String feedbacktxt,cusid;
@@ -287,8 +318,8 @@ public class FeedbackForm extends JFrame implements ActionListener,KeyListener,W
 	@Override
 	public void windowClosing(WindowEvent e) 
 	{
-		JOptionPane.showMessageDialog(this,"Thank You");
 		DbConnection1.closeConnection();
+		JOptionPane.showMessageDialog(this,"THANK YOU","EXIT",JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override

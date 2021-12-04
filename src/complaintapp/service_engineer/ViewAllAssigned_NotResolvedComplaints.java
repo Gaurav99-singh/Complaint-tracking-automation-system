@@ -27,6 +27,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import complaintapp.beans.*;
 import complaintapp.entry.*;
+import java.awt.Toolkit;
+import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
 
 public class ViewAllAssigned_NotResolvedComplaints extends JFrame implements ActionListener,KeyListener,WindowListener
 {
@@ -68,6 +71,7 @@ public class ViewAllAssigned_NotResolvedComplaints extends JFrame implements Act
 	
 	public ViewAllAssigned_NotResolvedComplaints() 
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ViewAllAssigned_NotResolvedComplaints.class.getResource("/complaintapp/images/icons8-view-64.png")));
 		
 		setTitle("SEE ASSIGNED COMPLAINTS");
 		this.addWindowListener(this);
@@ -82,7 +86,7 @@ public class ViewAllAssigned_NotResolvedComplaints extends JFrame implements Act
 	public void createComponents()
 	{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 995, 580);
+		setBounds(100, 100, 971, 580);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -90,35 +94,55 @@ public class ViewAllAssigned_NotResolvedComplaints extends JFrame implements Act
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("SEE ASSIGNED COMPLAINTS");
+		lblNewLabel.setBorder(new LineBorder(new Color(46, 139, 87), 5, true));
+		lblNewLabel.setForeground(new Color(0, 0, 128));
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setBackground(new Color(250, 128, 114));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
-		lblNewLabel.setBounds(189, 26, 570, 64);
+		lblNewLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 30));
+		lblNewLabel.setBounds(149, 11, 666, 64);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnview = new JButton("VIEW ASSIGNED COMPLAINTS");
+		btnview.setBorder(new LineBorder(new Color(85, 107, 47), 5));
+		btnview.setForeground(new Color(0, 0, 128));
+		btnview.setBackground(new Color(255, 127, 80));
 		btnview.addActionListener(this);
 		btnview.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
-		btnview.setBounds(234, 466, 548, 53);
+		btnview.setBounds(239, 468, 477, 64);
 		contentPane.add(btnview);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBackground(new Color(240, 128, 128));
+		scrollPane.setBorder(new LineBorder(new Color(139, 0, 0), 3));
+		scrollPane.setForeground(new Color(255, 0, 0));
+		scrollPane.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 15));
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(27, 101, 917, 340);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setForeground(new Color(255, 0, 0));
+		table.setFont(new Font("Stencil", Font.ITALIC, 15));
+		table.setBorder(new LineBorder(new Color(85, 107, 47)));
+		table.setBackground(new Color(0, 128, 128));
 		scrollPane.setViewportView(table);
 		
 		JTableHeader header=table.getTableHeader();//returns reference of header
-		header.setBackground(Color.CYAN);
-		header.setForeground(Color.RED);
+		header.setBackground(Color.GRAY);
+		header.setForeground(Color.ORANGE);
 		header.setFont(new Font("Comic Sans Ms",Font.BOLD,20));
 		
-		String[]colnames= {"NAME","ADDRESS","PHONE_NO","PRODUCT_NAME","COMPLAINT_TEXT"};
+		String[]colnames= {"NAME","ADDRESS","PHONE","PRODUCT","COMPLAINT_TEXT"};
 		model.setColumnIdentifiers(colnames);//create columns of our table
 		
 		table.setModel(model);	
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(ViewAllAssigned_NotResolvedComplaints.class.getResource("/complaintapp/images/complaint-text-wall-152228268.jpg")));
+		lblNewLabel_1.setBounds(0, 0, 957, 543);
+		contentPane.add(lblNewLabel_1);
 	}
 	
 	public void createRows()
@@ -129,7 +153,7 @@ public class ViewAllAssigned_NotResolvedComplaints extends JFrame implements Act
 		try
 		{
 			ps=con.prepareStatement(strsql);
-			ps.setString(1,"SE001");
+			ps.setString(1,EmployeeLogin.id);
 			ps.setString(2,"ASSIGNED");
 			System.out.println("Hello service engineer");
 			rs=ps.executeQuery();
@@ -225,7 +249,7 @@ public class ViewAllAssigned_NotResolvedComplaints extends JFrame implements Act
 	public void windowClosing(WindowEvent e) 
 	{
 		DbConnection1.closeConnection();
-		JOptionPane.showMessageDialog(this,"Thank You");
+		JOptionPane.showMessageDialog(this,"THANK YOU","EXIT",JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override

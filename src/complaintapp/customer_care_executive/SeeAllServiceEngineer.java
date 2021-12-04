@@ -27,6 +27,9 @@ import complaintapp.database.DbConnection1;
 import java.sql.*;
 import java.awt.event.*;
 import java.util.*;
+import java.awt.Toolkit;
+import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
 
 public class SeeAllServiceEngineer extends JFrame implements ActionListener,WindowListener,KeyListener{
 
@@ -64,6 +67,7 @@ public class SeeAllServiceEngineer extends JFrame implements ActionListener,Wind
 	
 	public SeeAllServiceEngineer() 
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(SeeAllServiceEngineer.class.getResource("/complaintapp/images/icons8-view-24.png")));
 		con=DbConnection1.createConnection();
 		model=new DefaultTableModel();
 		employeelist=new ArrayList<ViewEmployeeBean>();
@@ -75,7 +79,7 @@ public class SeeAllServiceEngineer extends JFrame implements ActionListener,Wind
 	public void createComponents()
 	{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 971, 498);
+		setBounds(100, 100, 969, 634);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -83,34 +87,53 @@ public class SeeAllServiceEngineer extends JFrame implements ActionListener,Wind
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("VIEW ALL SERVICE ENGINEER PAGE");
+		lblNewLabel.setForeground(new Color(178, 34, 34));
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setBorder(new LineBorder(new Color(47, 79, 79), 5));
+		lblNewLabel.setBackground(new Color(188, 143, 143));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
-		lblNewLabel.setBounds(93, 25, 774, 60);
+		lblNewLabel.setBounds(170, 11, 628, 60);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnview = new JButton("VIEW");
-		btnview.setBounds(316, 397, 232, 40);
+		btnview.setForeground(new Color(178, 34, 34));
+		btnview.setOpaque(true);
+		btnview.setBorder(new LineBorder(new Color(47, 79, 79), 5));
+		btnview.setBackground(new Color(188, 143, 143));
+		btnview.setHorizontalAlignment(SwingConstants.CENTER);
+		btnview.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 30));
+		btnview.setBounds(359, 484, 232, 76);
 		btnview.addActionListener(this);
 		contentPane.add(btnview);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(53, 137, 840, 230);
+		scrollPane.setBounds(10, 124, 924, 286);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
+		table.setForeground(new Color(255, 140, 0));
+		table.setFont(new Font("Stencil", Font.ITALIC, 15));
+		table.setBorder(new LineBorder(new Color(0, 0, 0)));
+		table.setBackground(new Color(105, 105, 105));
 		scrollPane.setViewportView(table);
 		
 		JTableHeader header=table.getTableHeader();
-		header.setBackground(Color.CYAN);
-		header.setForeground(Color.RED);
+		header.setBackground(Color.GRAY);
+		header.setForeground(Color.YELLOW);
 		header.setFont(new Font("Comic Sans Ms",Font.BOLD,20));
 		
 		String[]colnames= {"EMPLOYEE ID","NAME","ADDRESS","PHONE NO","EMAIL","GENDER","EXPERIENCE"};
 		model.setColumnIdentifiers(colnames);//create columns of our table
 		
 		table.setModel(model);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(SeeAllServiceEngineer.class.getResource("/complaintapp/images/customer-services-complaint-concept-small-wooden-cube-bearing-word-standing-desk-alongside-land-line-52154940.jpg")));
+		lblNewLabel_1.setBounds(0, 0, 957, 597);
+		contentPane.add(lblNewLabel_1);
 	}
 	
 	
@@ -182,9 +205,8 @@ public class SeeAllServiceEngineer extends JFrame implements ActionListener,Wind
 	@Override
 	public void windowClosing(WindowEvent e) 
 	{
-		// TODO Auto-generated method stub
 		DbConnection1.closeConnection();
-		JOptionPane.showMessageDialog(this,"THANK YOU");
+		JOptionPane.showMessageDialog(this,"THANK YOU","EXIT",JOptionPane.INFORMATION_MESSAGE);
 		
 	}
 

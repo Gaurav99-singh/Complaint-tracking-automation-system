@@ -38,7 +38,7 @@ public class EmployeeLogin extends JFrame implements ActionListener,WindowListen
 	private JTextField txtid;
 	private JPasswordField txtpassword;
 	private final ButtonGroup companypost = new ButtonGroup();
-	public static String id;
+	public static String id,emptype;
 
 	/**
 	 * Launch the application.
@@ -124,10 +124,10 @@ public class EmployeeLogin extends JFrame implements ActionListener,WindowListen
 		txtpassword.setBounds(523, 265, 280, 56);
 		contentPane.add(txtpassword);
 		
-		chkpass = new JCheckBox("see password");
+		chkpass = new JCheckBox("show password");
 		chkpass.setBorder(new LineBorder(new Color(0, 128, 128), 3, true));
 		chkpass.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 12));
-		chkpass.setBackground(new Color(240, 248, 255));
+		chkpass.setBackground(new Color(211, 211, 211));
 		chkpass.setBounds(523, 325, 141, 23);
 		chkpass.addActionListener(new ActionListener()
 				{
@@ -195,12 +195,12 @@ public class EmployeeLogin extends JFrame implements ActionListener,WindowListen
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(EmployeeLogin.class.getResource("/complaintapp/images/stock-photo-paper-tear-background-with-word-complaints-776659318.jpg")));
+		lblNewLabel_1.setIcon(new ImageIcon(EmployeeLogin.class.getResource("/complaintapp/images/complaint-key-grunge-typewriter-button-old-customer-service-concept-background-your-publications-34168942.jpg")));
 		lblNewLabel_1.setBounds(10, 11, 917, 577);
 		contentPane.add(lblNewLabel_1);
 	}
 	
-	public String password,emptype;
+	public String password;
 
 	@Override
 	public void actionPerformed(ActionEvent e) 
@@ -222,6 +222,8 @@ public class EmployeeLogin extends JFrame implements ActionListener,WindowListen
 			if(id.equalsIgnoreCase("GAURAV") && password.equalsIgnoreCase("7786@GAuv#") && emptype.equals("COMPANY MANAGER"))
 			{
 				JOptionPane.showMessageDialog(this,"Welcome COMPANY MANAGER","LOGIN-IN SUCCESSFULL",JOptionPane.PLAIN_MESSAGE);
+				this.dispose();
+				new CompanyManagerAdmin().setVisible(true);
 				txtid.setText("");
 				txtpassword.setText("");
 				companypost.clearSelection();
@@ -229,6 +231,8 @@ public class EmployeeLogin extends JFrame implements ActionListener,WindowListen
 			else if(emptype.equals("CUSTOMER CARE EXECUTIVE") && isPresent())
 			{
 				JOptionPane.showMessageDialog(this,"Welcome CUSTOMER CARE EXECUTIVE","LOGIN-IN SUCCESSFULL",JOptionPane.PLAIN_MESSAGE);
+				this.dispose();
+				new CustomerCareExecutiveAdmin().setVisible(true);
 				txtid.setText("");
 				txtpassword.setText("");
 				companypost.clearSelection();
@@ -236,12 +240,11 @@ public class EmployeeLogin extends JFrame implements ActionListener,WindowListen
 			else if(emptype.equals("SERVICE ENGINEER") && isPresent())
 			{
 				JOptionPane.showMessageDialog(this,"Welcome SERVICE ENGINEER","LOGIN-IN SUCCESSFULL",JOptionPane.PLAIN_MESSAGE);
-				//new ViewAllAssignedComplaints().setVisible(true);
-				new UpdateComplaintStatus().setVisible(true);
+				this.dispose();
+				new ServiceEngineerAdmin().setVisible(true);
 				txtid.setText("");
 				txtpassword.setText("");
 				companypost.clearSelection();
-				this.dispose();
 			}
 			else
 			{
@@ -327,7 +330,7 @@ public class EmployeeLogin extends JFrame implements ActionListener,WindowListen
 	public void windowClosing(WindowEvent e) 
 	{
 		DbConnection1.closeConnection();
-		JOptionPane.showMessageDialog(this,"THANK YOU");
+		JOptionPane.showMessageDialog(this,"THANK YOU","EXIT",JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override

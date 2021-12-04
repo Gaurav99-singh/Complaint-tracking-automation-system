@@ -9,7 +9,9 @@ import javax.swing.border.EmptyBorder;
 
 import complaintapp.beans.SeeComplaintsBean;
 import complaintapp.database.DbConnection1;
+import complaintapp.entry.CustomerCareExecutiveAdmin;
 import complaintapp.entry.EmployeeLogin;
+import complaintapp.entry.ServiceEngineerAdmin;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,6 +28,10 @@ import javax.swing.ButtonGroup;
 import java.sql.*;
 import java.awt.event.*;
 import javax.swing.ScrollPaneConstants;
+import java.awt.Toolkit;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
 
 public class UpdateComplaintStatus extends JFrame implements ActionListener,WindowListener,KeyListener
 {
@@ -64,6 +70,7 @@ public class UpdateComplaintStatus extends JFrame implements ActionListener,Wind
 	 */
 	public UpdateComplaintStatus()
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(UpdateComplaintStatus.class.getResource("/complaintapp/images/icons8-change-24.png")));
 		con=DbConnection1.createConnection();
 		this.addWindowListener(this);
 		setTitle("CHANGE COMPLAINT STATUS");
@@ -76,7 +83,7 @@ public class UpdateComplaintStatus extends JFrame implements ActionListener,Wind
 	public void createComponents()
 	{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 999, 595);
+		setBounds(100, 100, 968, 620);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -84,111 +91,188 @@ public class UpdateComplaintStatus extends JFrame implements ActionListener,Wind
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("CHANGE STATUS");
+		lblNewLabel.setForeground(new Color(75, 0, 130));
+		lblNewLabel.setBorder(new LineBorder(new Color(47, 79, 79), 5));
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setBackground(new Color(165, 42, 42));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 25));
-		lblNewLabel.setBounds(281, 29, 470, 64);
+		lblNewLabel.setBounds(252, 11, 470, 64);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblcomplaintid = new JLabel("ENTER COMPLAINT ID:");
+		lblcomplaintid.setForeground(new Color(0, 0, 128));
+		lblcomplaintid.setOpaque(true);
+		lblcomplaintid.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		lblcomplaintid.setBackground(new Color(139, 69, 19));
 		lblcomplaintid.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
 		lblcomplaintid.setHorizontalAlignment(SwingConstants.CENTER);
-		lblcomplaintid.setBounds(22, 114, 338, 34);
+		lblcomplaintid.setBounds(10, 96, 338, 40);
 		contentPane.add(lblcomplaintid);
 		
 		txtcomplaintid = new JTextField();
-		txtcomplaintid.setBounds(408, 118, 310, 34);
+		txtcomplaintid.setForeground(new Color(0, 128, 128));
+		txtcomplaintid.setFont(new Font("Stencil", Font.ITALIC, 20));
+		txtcomplaintid.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		txtcomplaintid.setBackground(new Color(189, 183, 107));
+		txtcomplaintid.setBounds(392, 96, 330, 40);
 		contentPane.add(txtcomplaintid);
 		txtcomplaintid.setColumns(10);
 		
 		JLabel lblcustomername = new JLabel("CUSTOMER NAME:");
+		lblcustomername.setForeground(new Color(0, 0, 128));
+		lblcustomername.setOpaque(true);
+		lblcustomername.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		lblcustomername.setBackground(new Color(139, 69, 19));
+		lblcustomername.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
 		lblcustomername.setHorizontalAlignment(SwingConstants.CENTER);
-		lblcustomername.setBounds(43, 267, 96, 14);
+		lblcustomername.setBounds(10, 182, 276, 40);
 		contentPane.add(lblcustomername);
 		
 		JLabel lblphone = new JLabel("PHONE NO:");
+		lblphone.setForeground(new Color(0, 0, 128));
+		lblphone.setOpaque(true);
+		lblphone.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		lblphone.setBackground(new Color(139, 69, 19));
+		lblphone.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
 		lblphone.setHorizontalAlignment(SwingConstants.CENTER);
-		lblphone.setBounds(54, 344, 70, 14);
+		lblphone.setBounds(10, 233, 276, 40);
 		contentPane.add(lblphone);
 		
 		JLabel lbladdress = new JLabel("ADDRESS:");
+		lbladdress.setForeground(new Color(0, 0, 128));
+		lbladdress.setOpaque(true);
+		lbladdress.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		lbladdress.setBackground(new Color(139, 69, 19));
+		lbladdress.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
 		lbladdress.setHorizontalAlignment(SwingConstants.CENTER);
-		lbladdress.setBounds(43, 417, 81, 14);
+		lbladdress.setBounds(10, 284, 276, 40);
 		contentPane.add(lbladdress);
 		
 		txtcustomername = new JTextField();
 		txtcustomername.setEnabled(false);
 		txtcustomername.setEditable(false);
-		txtcustomername.setBounds(203, 264, 145, 20);
+		txtcustomername.setForeground(new Color(0, 128, 128));
+		txtcustomername.setFont(new Font("Stencil", Font.ITALIC, 20));
+		txtcustomername.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		txtcustomername.setBackground(new Color(189, 183, 107));
+		txtcustomername.setBounds(314, 186, 247, 40);
 		contentPane.add(txtcustomername);
 		txtcustomername.setColumns(10);
 		
 		txtphone = new JTextField();
 		txtphone.setEnabled(false);
 		txtphone.setEditable(false);
-		txtphone.setBounds(203, 341, 145, 20);
+		txtphone.setForeground(new Color(0, 128, 128));
+		txtphone.setFont(new Font("Stencil", Font.ITALIC, 20));
+		txtphone.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		txtphone.setBackground(new Color(189, 183, 107));
+		txtphone.setBounds(314, 233, 247, 40);
 		contentPane.add(txtphone);
 		txtphone.setColumns(10);
 		
 		txtaddress = new JTextField();
 		txtaddress.setEnabled(false);
 		txtaddress.setEditable(false);
-		txtaddress.setBounds(203, 414, 157, 20);
+		txtaddress.setForeground(new Color(0, 128, 128));
+		txtaddress.setFont(new Font("Stencil", Font.ITALIC, 20));
+		txtaddress.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		txtaddress.setBackground(new Color(189, 183, 107));
+		txtaddress.setBounds(314, 284, 247, 40);
 		contentPane.add(txtaddress);
 		txtaddress.setColumns(10);
 		
 		JLabel lblprodnm = new JLabel("PRODUCT NAME:");
+		lblprodnm.setForeground(new Color(0, 0, 128));
+		lblprodnm.setOpaque(true);
+		lblprodnm.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		lblprodnm.setBackground(new Color(139, 69, 19));
+		lblprodnm.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
 		lblprodnm.setHorizontalAlignment(SwingConstants.CENTER);
-		lblprodnm.setBounds(528, 267, 111, 14);
+		lblprodnm.setBounds(10, 335, 276, 40);
 		contentPane.add(lblprodnm);
 		
 		JLabel lblcomptext = new JLabel("COMPLAINT TEXT:");
+		lblcomptext.setForeground(new Color(0, 0, 128));
+		lblcomptext.setOpaque(true);
+		lblcomptext.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		lblcomptext.setBackground(new Color(139, 69, 19));
+		lblcomptext.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
 		lblcomptext.setHorizontalAlignment(SwingConstants.CENTER);
-		lblcomptext.setBounds(528, 344, 123, 14);
+		lblcomptext.setBounds(10, 406, 276, 40);
 		contentPane.add(lblcomptext);
 		
 		txtprodname = new JTextField();
 		txtprodname.setEnabled(false);
 		txtprodname.setEditable(false);
-		txtprodname.setBounds(732, 264, 96, 20);
+		txtprodname.setForeground(new Color(0, 128, 128));
+		txtprodname.setFont(new Font("Stencil", Font.ITALIC, 20));
+		txtprodname.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		txtprodname.setBackground(new Color(189, 183, 107));
+		txtprodname.setBounds(314, 335, 247, 40);
 		contentPane.add(txtprodname);
 		txtprodname.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(732, 341, 227, 49);
+		scrollPane.setBounds(314, 392, 355, 107);
 		contentPane.add(scrollPane);
 		
 		txtcomptext = new JTextArea();
 		txtcomptext.setEnabled(false);
 		txtcomptext.setEditable(false);
+		txtcomptext.setForeground(new Color(0, 128, 128));
+		txtcomptext.setFont(new Font("Stencil", Font.ITALIC, 20));
+		txtcomptext.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		txtcomptext.setBackground(new Color(189, 183, 107));
 		scrollPane.setViewportView(txtcomptext);
 		
 	    btnupdate = new JButton("UPDATE");
+	    btnupdate.setForeground(new Color(139, 0, 0));
+	    btnupdate.setBorder(new LineBorder(new Color(0, 128, 128), 5));
+	    btnupdate.setBackground(new Color(189, 183, 107));
 	    btnupdate.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
-		btnupdate.setBounds(406, 524, 183, 23);
+		btnupdate.setBounds(337, 521, 276, 51);
 		btnupdate.addActionListener(this);
 		contentPane.add(btnupdate);
 		
 		btnsearch = new JButton("SEARCH");
-		btnsearch.setBounds(791, 117, 157, 37);
+		btnsearch.setForeground(new Color(139, 0, 0));
+		btnsearch.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
+		btnsearch.setBorder(new LineBorder(new Color(0, 128, 128), 5));
+		btnsearch.setBackground(new Color(189, 183, 107));
+		btnsearch.setBounds(761, 96, 157, 37);
 		btnsearch.addActionListener(this);
 		contentPane.add(btnsearch);
 		
 		JLabel lblremarks = new JLabel("REMARKS:");
+		lblremarks.setForeground(new Color(0, 0, 128));
+		lblremarks.setOpaque(true);
+		lblremarks.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		lblremarks.setBackground(new Color(139, 69, 19));
 		lblremarks.setHorizontalAlignment(SwingConstants.CENTER);
 		lblremarks.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
-		lblremarks.setBounds(494, 432, 167, 34);
+		lblremarks.setBounds(679, 182, 167, 34);
 		contentPane.add(lblremarks);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane_1.setBounds(732, 432, 227, 86);
+		scrollPane_1.setBounds(662, 233, 286, 142);
 		contentPane.add(scrollPane_1);
 		
 		txtremarks = new JTextArea();
+		txtremarks.setForeground(new Color(0, 128, 128));
+		txtremarks.setFont(new Font("Stencil", Font.ITALIC, 20));
+		txtremarks.setBorder(new LineBorder(new Color(47, 79, 79), 3));
+		txtremarks.setBackground(new Color(189, 183, 107));
 		scrollPane_1.setViewportView(txtremarks);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(UpdateComplaintStatus.class.getResource("/complaintapp/images/complaint-concept-against-barbwire-170339026.jpg")));
+		lblNewLabel_1.setBounds(0, 0, 954, 583);
+		contentPane.add(lblNewLabel_1);
 	}
 	
 	String cmpstatus;
@@ -451,7 +535,7 @@ public class UpdateComplaintStatus extends JFrame implements ActionListener,Wind
 	public void windowClosing(WindowEvent e) 
 	{
 		DbConnection1.closeConnection();
-		JOptionPane.showMessageDialog(this,"THANK YOU");
+		JOptionPane.showMessageDialog(this,"THANK YOU","EXIT",JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override

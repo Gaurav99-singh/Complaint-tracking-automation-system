@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import complaintapp.database.DbConnection1;
-
+import complaintapp.entry.CustomerCareExecutiveAdmin;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,6 +30,10 @@ import java.sql.*;
 import complaintapp.beans.*;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
+import java.awt.Toolkit;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
 
 public class AssignComplaint extends JFrame implements ActionListener,WindowListener{
 
@@ -60,6 +64,7 @@ public class AssignComplaint extends JFrame implements ActionListener,WindowList
 	
 	public AssignComplaint() 
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AssignComplaint.class.getResource("/complaintapp/images/icons8-course-assign-24.png")));
 		setTitle("ASSIGN COMPLAINTS");
 		con=DbConnection1.createConnection();
 		this.addWindowListener(this);
@@ -145,7 +150,7 @@ public class AssignComplaint extends JFrame implements ActionListener,WindowList
 	public void createComponents()
 	{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 987, 583);
+		setBounds(100, 100, 949, 583);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -153,40 +158,68 @@ public class AssignComplaint extends JFrame implements ActionListener,WindowList
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("ASSIGN COMPLAINTS PAGE");
+		lblNewLabel.setBorder(new LineBorder(new Color(255, 0, 0), 5));
+		lblNewLabel.setOpaque(true);
+		lblNewLabel.setBackground(new Color(0, 128, 128));
+		lblNewLabel.setForeground(new Color(255, 165, 0));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
-		lblNewLabel.setBounds(266, 27, 451, 27);
+		lblNewLabel.setBounds(229, 21, 451, 63);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblservice = new JLabel("SELECT SERVICE ENGINEER:");
+		lblservice.setOpaque(true);
+		lblservice.setForeground(new Color(255, 127, 80));
+		lblservice.setBorder(new LineBorder(new Color(85, 107, 47), 3));
+		lblservice.setBackground(new Color(255, 218, 185));
 		lblservice.setHorizontalAlignment(SwingConstants.CENTER);
 		lblservice.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 21));
-		lblservice.setBounds(36, 138, 436, 27);
+		lblservice.setBounds(29, 171, 436, 54);
 		contentPane.add(lblservice);
 		
 		JLabel lblcomplaint = new JLabel("SELECT A COMPLAINT:");
+		lblcomplaint.setOpaque(true);
+		lblcomplaint.setForeground(new Color(255, 127, 80));
+		lblcomplaint.setBorder(new LineBorder(new Color(85, 107, 47), 3));
+		lblcomplaint.setBackground(new Color(255, 218, 185));
 		lblcomplaint.setHorizontalAlignment(SwingConstants.CENTER);
 		lblcomplaint.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
-		lblcomplaint.setBounds(60, 289, 380, 27);
+		lblcomplaint.setBounds(29, 336, 436, 52);
 		contentPane.add(lblcomplaint);
 		
 		btnassign = new JButton("ASSIGN");
+		btnassign.setForeground(new Color(255, 140, 0));
+		btnassign.setBorder(new LineBorder(new Color(255, 0, 0), 5));
+		btnassign.setBackground(new Color(0, 128, 128));
 		btnassign.setFont(new Font("Snap ITC", Font.BOLD | Font.ITALIC, 20));
-		btnassign.setBounds(270, 419, 380, 52);
+		btnassign.setBounds(279, 470, 380, 52);
 		btnassign.addActionListener(this);
 		contentPane.add(btnassign);
 		
 		cmbservice = new JComboBox<Service_EngineerBean>();
+		cmbservice.setForeground(new Color(0, 128, 128));
+		cmbservice.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 25));
+		cmbservice.setBorder(new LineBorder(new Color(85, 107, 47), 3));
+		cmbservice.setBackground(new Color(255, 228, 181));
 		//cmbservice.setModel(new DefaultComboBoxModel(new String[] {"SELECT SERVICE ENGINEER:"}));
-		cmbservice.setBounds(530, 144, 380, 22);
+		cmbservice.setBounds(520, 173, 347, 52);
 		fillServiceCombo();
 		contentPane.add(cmbservice);
 		
 		cmbcomplaint = new JComboBox<String>();
 		cmbcomplaint.setModel(new DefaultComboBoxModel(new String[] {"SELECT COMPLAINT ID:"}));
-		cmbcomplaint.setBounds(530, 281, 380, 35);
+		cmbcomplaint.setForeground(new Color(0, 128, 128));
+		cmbcomplaint.setFont(new Font("Stencil", Font.BOLD | Font.ITALIC, 25));
+		cmbcomplaint.setBorder(new LineBorder(new Color(85, 107, 47), 3));
+		cmbcomplaint.setBackground(new Color(255, 228, 181));
+		cmbcomplaint.setBounds(520, 338, 347, 52);
 		fillComplaintCombo();
 		contentPane.add(cmbcomplaint);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(AssignComplaint.class.getResource("/complaintapp/images/delegate-manager-work-to-another-team-workers-managerial-concept-delegation-78135733.jpg")));
+		lblNewLabel_1.setBounds(0, 0, 935, 546);
+		contentPane.add(lblNewLabel_1);
 	}
 	
 	String cmb;
@@ -206,7 +239,7 @@ public class AssignComplaint extends JFrame implements ActionListener,WindowList
 			java.util.Date d=new java.util.Date();
 			long date=d.getTime();
 			java.sql.Date sd=new java.sql.Date(date);
-			String strinsert="insert into assigncomplaint(EmployeeId, Complaintid,Complaint_Status,Date) values(?,?,?,?)";
+			String strinsert="insert into assigncomplaint(EmployeeId, Complaintid,Complaint_Status,AssignDate) values(?,?,?,?)";
 			try
 			{
 				ps=con.prepareStatement(strinsert);
@@ -285,7 +318,7 @@ public class AssignComplaint extends JFrame implements ActionListener,WindowList
 	public void windowClosing(WindowEvent e)
 	{
 		DbConnection1.closeConnection();
-		JOptionPane.showMessageDialog(this,"Thank You");
+		JOptionPane.showMessageDialog(this,"THANK YOU","EXIT",JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	@Override
